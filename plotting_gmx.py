@@ -33,12 +33,13 @@ def plot_ana_rmsd_apo(ana_f):
 	the folder with the .xvg files.
     """
 
-    DBD = pd.read_csv( ana_f + "DBD_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
-    core = pd.read_csv( ana_f + "core_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
+    DBD = pd.read_csv( ana_f + "DBD_rmsd.xvg" , sep='\s+', skiprows=18, names=["MD steps", "RMSD (nm)"])
+    core = pd.read_csv( ana_f + "core_rmsd.xvg" , sep='\s+', skiprows=18, names=["MD steps", "RMSD (nm)"])
     DBD['domain'] = ['DBD' for x in range ( len(DBD) ) ]
     core['domain'] = ['core' for x in range ( len(core) ) ]
     
     rmsd = pd.concat([DBD, core])
+    rmsd["Time (ps)"] = rmsd["MD steps"].copy()*0.002
     sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "domain" )
     return(rmsd)
 
