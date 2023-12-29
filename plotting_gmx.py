@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def plot_ana_rmsd(ana_f):
-    """ Plot the root mean square deviation of atomic positions for core, DNA binding domains and DNA.
+    """ Plot the root mean square deviation of atomic positions for core, DNA binding Domains and DNA.
 
     Parameters
     ----------
@@ -16,16 +16,16 @@ def plot_ana_rmsd(ana_f):
     DNA = pd.read_csv( ana_f + "DNA_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
     DBD = pd.read_csv( ana_f + "DBD_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
     core = pd.read_csv( ana_f + "core_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
-    DNA['domain'] = ['DNA' for x in range ( len(DNA) )]
-    DBD['domain'] = ['DBD' for x in range ( len(DBD) ) ]
-    core['domain'] = ['core' for x in range ( len(core) ) ]
+    DNA['Domain'] = ['DNA' for x in range ( len(DNA) )]
+    DBD['Domain'] = ['DBD' for x in range ( len(DBD) ) ]
+    core['Domain'] = ['core' for x in range ( len(core) ) ]
     
     rmsd = pd.concat([DBD, core, DNA])
-    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "domain" )
+    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "Domain" )
     return(rmsd)
 
 def plot_ana_rmsd_apo(ana_f):
-    """ Plot the root mean square deviation of atomic positions for core, DNA binding domains and DNA.
+    """ Plot the root mean square deviation of atomic positions for core, DNA binding Domains and DNA.
 
     Parameters
     ----------
@@ -33,18 +33,18 @@ def plot_ana_rmsd_apo(ana_f):
 	the folder with the .xvg files.
     """
 
-    DBD = pd.read_csv( ana_f + "DBD_rmsd.xvg" , sep='\s+', skiprows=18, names=["MD steps", "RMSD (nm)"])
-    core = pd.read_csv( ana_f + "core_rmsd.xvg" , sep='\s+', skiprows=18, names=["MD steps", "RMSD (nm)"])
-    DBD['domain'] = ['DBD' for x in range ( len(DBD) ) ]
-    core['domain'] = ['core' for x in range ( len(core) ) ]
+    DBD = pd.read_csv( ana_f + "DBD_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
+    core = pd.read_csv( ana_f + "core_rmsd.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
+    DBD['Domain'] = ['DBD' for x in range ( len(DBD) ) ]
+    core['Domain'] = ['core' for x in range ( len(core) ) ]
     
     rmsd = pd.concat([DBD, core])
-    rmsd["Time (ps)"] = rmsd["MD steps"].copy()*0.002
-    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "domain" )
+    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "Domain" )
+    plt.show()
     return(rmsd)
 
 def plot_ana_rmsd_2(ana_f):
-    """ Plot the root mean square deviation of atomic positions for core, DNA binding domains and DNA.
+    """ Plot the root mean square deviation of atomic positions for core, DNA binding Domains and DNA.
 
     Parameters
     ----------
@@ -55,12 +55,12 @@ def plot_ana_rmsd_2(ana_f):
     DNA = pd.read_csv( ana_f + "DNA_rmsd_2.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
     DBD = pd.read_csv( ana_f + "DBD_rmsd_2.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
     core = pd.read_csv( ana_f + "core_rmsd_2.xvg" , sep='\s+', skiprows=18, names=["Time (ps)", "RMSD (nm)"])
-    DNA['domain'] = ['DNA' for x in range ( len(DNA) )]
-    DBD['domain'] = ['DBD' for x in range ( len(DBD) ) ]
-    core['domain'] = ['core' for x in range ( len(core) ) ]
+    DNA['Domain'] = ['DNA' for x in range ( len(DNA) )]
+    DBD['Domain'] = ['DBD' for x in range ( len(DBD) ) ]
+    core['Domain'] = ['core' for x in range ( len(core) ) ]
     
     rmsd = pd.concat([DBD, core, DNA])
-    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "domain" )
+    sns.lineplot ( data=rmsd, x = "Time (ps)", y = "RMSD (nm)", hue = "Domain" )
     return(rmsd)
 
 def plot_ana_rmsf(ana_f):
